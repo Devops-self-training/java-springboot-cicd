@@ -46,7 +46,6 @@ jobs:
       - docker/build:
           dockerfile: dockerfile
           image: akakshuki/springboot-test-cicd
-          tag: CIRCLE_BUILD_NUM
       - docker/push:
           image: akakshuki/springboot-test-cicd
       
