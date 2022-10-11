@@ -45,7 +45,8 @@ jobs:
           use-docker-credentials-store: false 
       - run:
           name: docker start daemon
-          command: sudo apt update -y && sudo apt upgrade -y && sudo dockerd 
+          command: |
+            sudo apt update -y && sudo apt upgrade -y && sudo dockerd 
 
       - docker/build:
           dockerfile: dockerfile
