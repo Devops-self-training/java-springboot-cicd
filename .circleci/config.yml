@@ -42,7 +42,6 @@ jobs:
       - checkout
       - docker/install-docker
       - docker/check:
-          registry: docker.io 
           docker-username: DOCKER_USR 
           docker-password: DOCKER_PWD 
           use-docker-credentials-store: false 
