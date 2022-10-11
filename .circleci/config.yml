@@ -40,12 +40,12 @@ jobs:
     steps:
       - checkout
       - docker/install-docker
-      - docker/check:
-          docker-password: $docker_pwd 
-          docker-username: $docker_usr
       - docker/build:
           dockerfile: dockerfile
           image: akakshuki/springboot-test-cicd
+      - docker/check:
+          docker-username: DOCKER_USR
+          docker-password: DOCKER_PWD 
       - docker/push:
           image: akakshuki/springboot-test-cicd
       
