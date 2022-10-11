@@ -40,15 +40,10 @@ jobs:
     steps:
       - checkout
       - docker/build:
-          registry: docker.io  
           image: akakshuki/springboot-test-cicd
-      - run:
-          name: docker-buid 
-          command: docker build -t akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM .
-      - run:
-          name: docker-push 
-          command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM
-         
+      - docker/push:
+          image: akakshuki/springboot-test-cicd
+      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
