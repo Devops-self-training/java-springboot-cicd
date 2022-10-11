@@ -41,7 +41,7 @@ jobs:
       - checkout
       - docker/build:
           registry: docker.io  
-          image: akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM
+          image: akakshuki/springboot-test-cicd
       - run:
           name: docker-buid 
           command: docker build -t akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM .
