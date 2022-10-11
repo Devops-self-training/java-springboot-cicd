@@ -31,9 +31,7 @@ jobs:
           name: Test
           command: mvn test
   docker-build-and-push:
-    environment:
-          DOCKER_USR: $DOCKER_USR
-          DOCKER_PWD: $DOCKER_PWD
+
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
