@@ -26,6 +26,19 @@ jobs:
       - run:
           name: Test
           command: mvn test
+  docker-build-and-push:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - docker/build:
+          dockerfile: . 
+          registry: docker.io 
+          treat-warnings-as-errors: false 
+          use-buildkit: true 
+          attach-at: . 
+          image: akakshuki/${CIRCLE_PR_REPONAME}:${CIRCLE_BUILD_NUM}
+      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
