@@ -38,16 +38,11 @@ jobs:
     
     steps:
       - checkout
-      - docker/install-docker
+      - setup_remote_docker
       - docker/check:
           docker-username: DOCKER_USR 
           docker-password: DOCKER_PWD 
           use-docker-credentials-store: false 
-      - run:
-          name: docker start daemon
-          command: |
-            sudo apt update -y && sudo apt upgrade -y && sudo dockerd 
-
       - docker/build:
           dockerfile: dockerfile
           image: akakshuki/springboot-test-cicd
