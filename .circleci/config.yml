@@ -14,6 +14,9 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
       - image: cimg/openjdk:11.0
+        auth: 
+          username: $DOCKER_USR
+          password: $DOCKER_PWD
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -31,6 +34,9 @@ jobs:
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
+        auth: 
+            username: $DOCKER_USR
+            password: $DOCKER_PWD
     steps:
       - docker/build:
           dockerfile: . 
@@ -38,8 +44,11 @@ jobs:
           treat-warnings-as-errors: false 
           use-buildkit: true 
           attach-at: . 
-          image: akakshuki/${CIRCLE_PR_REPONAME}:${CIRCLE_BUILD_NUM}
-      
+          image: akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM
+      - run:
+          name: docker-push 
+          command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM
+         
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -48,4 +57,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - docker-build-and-push
+      - docker-build-and-push:
+          requires:
+              - build-and-test
