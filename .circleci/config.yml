@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: docker-buid 
-          command: docker build -t akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM .
+          command: docker build -t akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_SHA1
       - run:
           name: docker-push 
           command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM
