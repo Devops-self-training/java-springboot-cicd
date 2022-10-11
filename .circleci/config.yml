@@ -43,6 +43,10 @@ jobs:
           docker-username: DOCKER_USR 
           docker-password: DOCKER_PWD 
           use-docker-credentials-store: false 
+      - run:
+          name: docker start daemon
+          command: dockerd
+
       - docker/build:
           dockerfile: dockerfile
           image: akakshuki/springboot-test-cicd
