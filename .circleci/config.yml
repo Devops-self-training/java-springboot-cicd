@@ -38,17 +38,14 @@ jobs:
             username: $DOCKER_USR
             password: $DOCKER_PWD
     steps:
-
+      - checkout
       - run:
           name: docker-buid 
-          command: ls -a
-      # - run:
-      #     name: docker-buid 
-      #     command: docker build -t akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM .
+          command: docker build -t akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM .
       
-      # - run:
-      #     name: docker-push 
-      #     command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM
+      - run:
+          name: docker-push 
+          command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/springboot-test-cicd:v$CIRCLE_BUILD_NUM
          
 
 # Invoke jobs via workflows
