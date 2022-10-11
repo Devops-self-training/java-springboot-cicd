@@ -61,3 +61,6 @@ workflows:
       - docker-build-and-push:
           requires:
               - build-and-test
+          filters:
+              branches:
+                   only: main
