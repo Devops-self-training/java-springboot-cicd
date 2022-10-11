@@ -31,6 +31,7 @@ jobs:
           name: Test
           command: mvn test
   docker-build-and-push:
+  
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
@@ -39,10 +40,13 @@ jobs:
             password: $DOCKER_PWD
     steps:
       - checkout
+
       - docker/install-docker
       - docker/check:
-          docker-username: DOCKER_USR
+          registry: docker.io 
+          docker-username: DOCKER_USR 
           docker-password: DOCKER_PWD 
+          use-docker-credentials-store: false 
       - docker/build:
           dockerfile: dockerfile
           image: akakshuki/springboot-test-cicd
