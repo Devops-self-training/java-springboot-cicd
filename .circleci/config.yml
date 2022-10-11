@@ -45,7 +45,7 @@ jobs:
           use-docker-credentials-store: false 
       - run:
           name: docker start daemon
-          command: docker-machine start
+          command: sudo dockerd 
 
       - docker/build:
           dockerfile: dockerfile
