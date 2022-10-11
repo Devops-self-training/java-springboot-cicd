@@ -38,13 +38,10 @@ jobs:
             username: $DOCKER_USR
             password: $DOCKER_PWD
     steps:
-      - docker/build:
-          dockerfile: . 
-          registry: docker.io 
-          treat-warnings-as-errors: false 
-          use-buildkit: true 
-          attach-at: . 
-          image: akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM
+
+      - run:
+          name: docker-buid 
+          command: docker build -t akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM .
       - run:
           name: docker-push 
           command: docker login -u $DOCKER_USR -p DOCKER_PWD && docker push akakshuki/$CIRCLE_PR_REPONAME:$CIRCLE_BUILD_NUM
