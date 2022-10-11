@@ -38,9 +38,11 @@ jobs:
         auth: 
             username: $DOCKER_USR
             password: $DOCKER_PWD
+    environment:
+          DOCKER_USR: $DOCKER_USR
+          DOCKER_PWD: $DOCKER_PWD
     steps:
       - checkout
-
       - docker/install-docker
       - docker/check:
           registry: docker.io 
